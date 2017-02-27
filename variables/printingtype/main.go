@@ -4,7 +4,7 @@ import "fmt"
 
 func main() {
 
-	// Variables initialization (declaration and value assignment)
+	// Variables initialization (declaration and value assignment at the same time)
 	a := 10
 	b := "Felipe"
 	c := 3.14

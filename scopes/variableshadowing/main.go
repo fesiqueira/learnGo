@@ -2,8 +2,8 @@ package main
 
 import "fmt"
 
-// When a function is declared, it can have or not parameters
-// And when a function is called, it can be receive or not arguments
+// When a function is declared, it can have or not PARAMETERS
+// And when a function is called, it can receive or not ARGUMENTS
 
 // Defined in the package scope, not accessible globally nor exported (named with lower case).
 // Accessible from any file that is part of the package

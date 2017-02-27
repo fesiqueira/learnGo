@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/fsiqp/learnGo/scopes/packagescope/visibility/visi"
+	"github.com/fel-siqueira/learnGo/scopes/packagescope/visibility/visi"
 )
 
 func main() {

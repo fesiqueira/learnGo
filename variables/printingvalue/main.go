@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-// Variable declaration: b as type String
+// Variable declaration: g as type String
 var g string
 
 // Variable declaration and value assignment: variable initialization

@@ -10,8 +10,8 @@ func main() {
 	var d bool
 
 	fmt.Printf("Printing the zero-values \n")
-	fmt.Printf("String: %v \n", a)
-	fmt.Printf("Integer: %v \n", b)
-	fmt.Printf("Float: %v \n", c)
-	fmt.Printf("Boolean: %v \n", d)
+	fmt.Printf("%T: %v \n", a, a)
+	fmt.Printf("%T: %v \n", b, b)
+	fmt.Printf("%T: %v \n", c, c)
+	fmt.Printf("%T: %v \n", d, d)
 }

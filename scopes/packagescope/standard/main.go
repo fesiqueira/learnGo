@@ -9,7 +9,7 @@ func main() {
 	fmt.Println(x)
 	printX()
 
-	// Initializing y variable. The line 13 can't see the y, because it's declared above the print.
+	// Initializing y variable. The line 13 can't see the y, because it's declared below the print.
 	fmt.Println(y)
 	y := "Felipe"
 }
@@ -17,6 +17,6 @@ func main() {
 func printX() {
 	fmt.Println(x)
 
-	// The line below can't print y because y is declared in the block scope (inside curly braces {} )
+	// The line below can't print y because y is declared in the func main scope (inside curly braces {} )
 	fmt.Println(y)
 }
