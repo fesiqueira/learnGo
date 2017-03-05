@@ -1,5 +1,8 @@
 package visi
 
+// Imports have a file scope
+// If we needed to use fmt package in another package visi file
+// We should import it again
 import "fmt"
 
 // MyName is exported, so its accessible from any main file that imports visi package
