@@ -2,12 +2,8 @@ package main
 
 import "fmt"
 
-func divideAndEven(x int) (half int, even bool) {
-	if x%2 == 0 {
-		even = true
-	}
-	half = x / 2
-	return half, even
+func divideAndEven(x int) (int, bool) {
+	return x / 2, x%2 == 0
 }
 
 func main() {
