@@ -2,21 +2,21 @@ package main
 
 import "fmt"
 
-func fibo(until int) (numbers []int) {
-	prev := 1
-	var number, prev2 int
-	for i := 0; i < until; i++ {
-		number = prev + prev2
-		prev2 = prev
-		prev = number
-		numbers = append(numbers, number)
+func fibo(j int) []int {
+	var ns []int
+	a, n := 0, 1
+	for i := 1; i < j; i++ {
+		a, n = n, a+n
+		ns = append(ns, n)
 	}
-	return numbers
+	return ns
 }
 
-func sumEven(numbers []int) (sum int) {
-	for _, n := range numbers {
-		if n%2 == 0 {
+func sumEven(x int) int {
+	var sum int
+	ns := fibo(x)
+	for _, n := range ns {
+		if n%2 == 0 && sum < 4000000 {
 			sum += n
 		}
 	}
@@ -24,5 +24,6 @@ func sumEven(numbers []int) (sum int) {
 }
 
 func main() {
-	fmt.Println("Sum of the even numbers:", sumEven(fibo(10)))
+	fmt.Println(fibo(10))
+	fmt.Println(sumEven(10))
 }
