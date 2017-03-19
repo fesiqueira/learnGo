@@ -4,6 +4,8 @@ import "fmt"
 
 func main() {
 	// Every new item should be appended to the slice
+
+	// The slices will be initialized with zero value by the compiler, and that's is nil
 	var student []string
 	var students [][]string
 
