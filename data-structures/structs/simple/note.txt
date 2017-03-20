@@ -1,0 +1,36 @@
+We used shorthand notation:
+    To create a variable named p1 of type person
+    To create a variable named p2 of type person
+
+We initialized those variables with specific values
+We used the short variable declaration operator with a struct literal to initialize
+
+-------------------------------------------------------------------------------------
+
+How to talk about structs:
+    - User defined type
+    - We declare the type
+    - The type has fields
+    - The type can also have "tags", like json or datastore
+    - The type has an underlying type
+        - In this case, the underlying type is struct
+    - We declare variables of the type
+    - We initialize those variables
+    - or, initialize to the "zero value"
+    - A struct is a composite/agregate type
+
+-------------------------------------------------------------------------------------
+
+Go allows us the ability to declare our own types.
+Struct types are declared by composing a fixed set of unique fields together.
+Each filed in a struct id declared with a known type.
+This could be a built-in type or another user-defined type
+Once we have a type declared, we can create values from the type
+When we declare variables, the value that the variable represents is always initialized
+The value can be initialized with a specific value or it can be initialized to it's zero value
+For numeric types, the zero value would be 0; For string it would be empty; and for booleans it would be false
+In the case of a struct, the zero value would apply to all the different fields in the struct
+Anytime a variable is created and initialized to it's zero value, it is idiomatic to use the keyword variable
+Reserver the use of the keyword vay as a way to indicate that a variable is being set to it's zero value
+If the variable will be initialized to something other than it's zero value,
+then use the shorthand variable declaration operator with a struct literal

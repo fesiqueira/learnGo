@@ -1,0 +1,28 @@
+Go is Object Oriented
+
+1 - Encapsulation
+state ("fields")
+behavior ("methods")
+exported / unexported ("capitalized or not")
+
+2 - Reusability
+inheritance ("embedded types")
+
+3 - Polymorphism
+interfaces
+
+4 - Overriding
+promotion
+
+----------------
+Traditional OOP
+
+Classes
+- data structure describing a type of object
+- you can then create "instances"/"objects" from the class/blueprint
+- classes hold both:
+    state / data / fields
+    behavior / methods
+- public / private
+
+inheritance

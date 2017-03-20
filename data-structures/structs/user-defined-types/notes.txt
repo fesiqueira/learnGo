@@ -1,0 +1,15 @@
+user defined types - we declare a new type, foo
+the underlying type of foo is int
+
+conversion: int(myAge)
+converting type foo to type int
+
+This code is only for example
+It's a BAD PRACTICE to alias types
+
+One exception: if you need to attach methods to a type
+see the time package for an example of This
+    godoc.org/time
+    type Duration int64
+
+Duration has methods attached to it
