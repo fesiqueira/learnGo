@@ -5,20 +5,29 @@ import (
 	"os"
 )
 
-func main() {
-	var osArgs [2]string
+func optionAndHost() (string, string) {
+	var args [2]string
 
-	if len(os.Args[1:]) == 0 {
+	// Initializing a variable that holds only the arguments (except the program location)
+	osArgs := os.Args[1:]
+
+	// Initializing a variable that holds the total of arguments passed
+	numArgs := len(osArgs)
+
+	// Limiting to 2 arguments
+	switch {
+	case numArgs == 0:
 		fmt.Println("Too few arguments, use -h")
-		return
-	} else if len(os.Args[1:]) > 2 {
+	case len(os.Args[1:]) > 2:
 		fmt.Println("Too much arguments, use -h")
-		return
+	default:
+		for i := 0; i < numArgs; i++ {
+			args[i] = osArgs[i]
+		}
 	}
+	return args[0], args[1]
+}
 
-	for i := 0; i < len(os.Args[1:]); i++ {
-		osArgs[i] = os.Args[i+1]
-	}
-
-	fmt.Println(osArgs)
+func main() {
+	fmt.Println(optionAndHost())
 }
