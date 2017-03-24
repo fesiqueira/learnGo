@@ -1,0 +1,3 @@
+ezcli usage example:
+
+    go run main.go -l -a
