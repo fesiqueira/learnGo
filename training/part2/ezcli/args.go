@@ -9,7 +9,7 @@ import (
 // and returns a slice of strings containing all the input arguments
 // If the CLI is limited to 5 arguments and the user input 4 or less
 // the missing arguments will be initilized with empty
-func UserArgs(nArgs int) (arguments []string) {
+func Args(nArgs int) (arguments []string) {
 	var args = make([]string, nArgs)
 	osArgs := os.Args[1:]  // Initializing a variable that holds only the arguments (except the program location)
 	numArgs := len(osArgs) // Initializing a variable that holds the total of arguments passed
