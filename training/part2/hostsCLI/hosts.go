@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	s1 := ezcli.NewUser()
-	fmt.Println(s1.OS)
-	fmt.Println(s1.Username)
+	program := ezcli.NewProgram()
+	fmt.Println(program)
+	fmt.Println(program.Compiled)
 }
