@@ -1,0 +1,12 @@
+GET http://localhost:4000/workers
+
+###
+
+GET http://localhost:4000/start/bot
+
+###
+GET http://localhost:4000/stop/bot
+
+###
+
+GET http://localhost:4000/add/bot
