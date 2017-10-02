@@ -16,8 +16,9 @@ func main() {
 	}
 
 	for number, serial := range serials {
+		// if strings.HasPrefix(serial, "ttyUSB") {
 		arduinos = append(arduinos, NewArduino(number, serial))
-
+		// }
 	}
 
 	for _, arduino := range arduinos {
@@ -26,6 +27,7 @@ func main() {
 			log.Fatal(err)
 		}
 
-		fmt.Println("Default Name:", arduino.Name, "Port:", arduino.Port, "Connection:", arduino.Connection.Name(), "Num of Devices:", arduino.Devices.Len())
+		fmt.Println("Default Name:", arduino.Name, "Port:", arduino.Port, "Connection:", arduino.Connection.Name(), "Number of Devices:", arduino.Devices.Len())
 	}
+
 }
