@@ -28,7 +28,7 @@ func main() {
 	router.HandleFunc("/workers", ListAllWorkers(workers))
 	router.HandleFunc("/start/{workername}", Start(workers))
 	router.HandleFunc("/stop/{workername}", Stop(workers))
-	router.HandleFunc("/add/{workername}", AddLedToWorker(workers))
+	router.HandleFunc("/setup/{workername}", AddLedToWorker(workers))
 
 	http.ListenAndServe(":4000", router)
 }
