@@ -2,79 +2,31 @@ package main
 
 import (
 	"errors"
+	"fmt"
 	"log"
-	"reflect"
 	"strconv"
 
 	serial "go.bug.st/serial.v1"
 
+	"gobot.io/x/gobot"
 	"gobot.io/x/gobot/drivers/gpio"
 
 	"gobot.io/x/gobot/platforms/firmata"
 )
 
-// Devices represents all devices that can be attached to an Arduino
-type Devices struct {
-	LED   map[string]*gpio.LedDriver
-	Motor map[string]*gpio.MotorDriver
-}
-
-// InitDevices initializes the maps in Devices
-func InitDevices() Devices {
-	return Devices{
-		LED:   make(map[string]*gpio.LedDriver),
-		Motor: make(map[string]*gpio.MotorDriver),
-	}
-}
-
-// CountTotal returns the number of devices attached to an Arduino
-func (d *Devices) CountTotal() int {
-	var countTotal int
-	value := reflect.ValueOf(*d)
-
-	for i := 0; i < value.NumField(); i++ {
-		field := value.Field(i).Interface()
-
-		switch reflect.TypeOf(field).Kind() {
-		case reflect.Map:
-			countTotal += reflect.ValueOf(field).Len()
-		}
-	}
-
-	return countTotal
-}
-
-// CountPerDevice returns a map[string]int containing the quantity of devices, classified by it's type
-func (d *Devices) CountPerDevice() map[string]int {
-	countPerDevice := make(map[string]int)
-
-	value := reflect.ValueOf(*d)
-
-	for i := 0; i < value.NumField(); i++ {
-		field := value.Field(i).Interface()
-		fieldType := reflect.TypeOf(field).Kind()
-
-		switch fieldType {
-		case reflect.Map:
-			fieldName := value.Type().Field(i).Name
-			fieldLength := reflect.ValueOf(field).Len()
-
-			if fieldLength > 0 {
-				countPerDevice[fieldName] = fieldLength
-			}
-		}
-	}
-
-	return countPerDevice
-}
-
 // Arduino represents a physical Arduino
 type Arduino struct {
-	Name       string
-	Port       string
-	Status     bool
+	Name string
+	Port string
+	Status
 	Connection *firmata.Adaptor
-	Devices    Devices
+	Devices    map[string]gobot.Driver
+}
+
+// Status concentrates the status info about an Arduino
+type Status struct {
+	State     bool
+	Connected bool
 }
 
 // Arduinos represents a slice of pointer of Arduino
@@ -86,7 +38,7 @@ func NewArduino(number int, port string) *Arduino {
 		Name:       "Arduino-" + strconv.Itoa(number),
 		Port:       port,
 		Connection: firmata.NewAdaptor(port),
-		Devices:    InitDevices(),
+		Devices:    make(map[string]gobot.Driver),
 	}
 }
 
@@ -115,14 +67,30 @@ func FindArduinos() Arduinos {
 func (a *Arduino) AddDevice(deviceType, pin string) error {
 	switch deviceType {
 	case "led", "Led", "LED":
-		ledNumber := strconv.Itoa(len(a.Devices.LED) + 1)
-		a.Devices.LED["LED-"+ledNumber] = gpio.NewLedDriver(a.Connection, pin)
+		ledNumber := strconv.Itoa(len(a.Devices) + 1)
+		a.Devices["LED-"+ledNumber] = gpio.NewLedDriver(a.Connection, pin)
 	case "motor", "Motor", "MOTOR":
-		motorNumber := strconv.Itoa(len(a.Devices.Motor) + 1)
-		a.Devices.Motor["MOTOR"+motorNumber] = gpio.NewMotorDriver(a.Connection, pin)
+		// motorNumber := strconv.Itoa(len(a.Devices.Motor) + 1)
+		// a.Devices.Motor["MOTOR"+motorNumber] = gpio.NewMotorDriver(a.Connection, pin)
 	default:
 		return errors.New("Unsupported device")
 	}
 
 	return nil
+}
+
+// Start "boots" an Arduino, starting the connection and it's devices
+func (a *Arduino) Start() {
+	a.Connection.Connect()
+	a.Connected = true
+
+	for _, device := range a.Devices {
+		device.Start()
+	}
+}
+
+func (a *Arduino) ListDevices() {
+	for name, device := range a.Devices {
+		fmt.Printf("Name: %s\nDevice: %p\n\n", name, device)
+	}
 }
